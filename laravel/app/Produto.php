@@ -14,7 +14,7 @@ class Produto extends Model{
     public $timestamps = false;
 
     #permite salvar estes campos
-    protected $fillable = ['nome', 'descricao', 'valor', 'quantidade'];
+    protected $fillable = ['nome', 'descricao', 'valor', 'quantidade', 'tamanho'];
 
     #não permite salvar
     protected $guarded = ['id'];

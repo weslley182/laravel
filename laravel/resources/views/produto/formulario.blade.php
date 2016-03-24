@@ -21,6 +21,10 @@
             <input type="number" name="quantidade" class="form-control"/>
         </div>
         <div class="form-group">
+            <label>Dimensões</label>
+            <input type="text" name="tamanho" class="form-control"/>
+        </div>
+        <div class="form-group">
             <label>Descrição</label>
             <textarea name="descricao" class="form-control" type="text"></textarea>
         </div>

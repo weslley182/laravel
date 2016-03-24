@@ -38,20 +38,30 @@ class ProdutoController extends Controller{
         return view('produto.formulario');
     }
 
+    /**
+     * @return $this
+     */
     public function adiciona(){
         Produto::create(Request::all());
         return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function listaJson(){
         $produtos = Produto::all();
         return response()->json($produtos);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function remove($id){
         $produto = Produto::find($id);
         $produto->delete();
         return redirect()->action('ProdutoController@lista');
-
     }
+
 }

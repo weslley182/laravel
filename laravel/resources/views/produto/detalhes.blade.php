@@ -15,6 +15,9 @@
         <li>
             <b>Quantidade em estoque:</b> {{$p->quantidade}}
         </li>
+        <li>
+            <b>Dimensões:</b> {{$p->tamanho}}
+        </li>
     </ul>
 </div>
 
