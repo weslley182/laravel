@@ -33,7 +33,15 @@
         </tr>
         @endforeach
     </table>
-</div>
 
     @endif
+
+</div>
+
+
+
+
+
+
+
 @stop
