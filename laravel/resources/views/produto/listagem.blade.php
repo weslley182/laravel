@@ -18,6 +18,7 @@
             <th>Descricao</th>
             <th>Quantidade</th>
             <th>Detalhes</th>
+            <th>Remover</th>
         </tr>
         @foreach ($produtos as $p)
         <tr class="{{$p->quantidade <= 1 ? 'danger' : '' }}">
@@ -28,6 +29,11 @@
             <td>
                 <a href="/produtos/mostra/{{ $p->id  }}">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </a>
+            </td>
+            <td>
+                <a href="/produtos/remove/{{ $p->id  }}">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </a>
             </td>
         </tr>

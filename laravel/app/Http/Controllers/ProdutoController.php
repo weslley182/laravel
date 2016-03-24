@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Request;
+use App\Produto;
 
 /**
  * Class ProdutoController
@@ -14,22 +15,20 @@ class ProdutoController extends Controller{
      * @return $this
      */
     public function lista(){
-        $produtos = DB::select("select * from produtos");
-
+        $produtos = Produto::all();
         return view('produto.listagem')->with('produtos', $produtos);
     }
 
     /**
      * @return $this|string
      */
-    public function mostra(){
-        $id = Request::route('id');
-        $resposta = DB::select('select * from produtos where id = ?', [$id]);
+    public function mostra($id){
+        $resposta = Produto::find($id);
 
         if(empty($resposta)) {
             return "Esse produto não existe";
         }
-        return view('produto.detalhes')->with('p', $resposta[0]);
+        return view('produto.detalhes')->with('p', $resposta);
     }
 
     /**
@@ -40,22 +39,19 @@ class ProdutoController extends Controller{
     }
 
     public function adiciona(){
-
-        $nome = Request::input('nome');
-        $descricao = Request::input('descricao');
-        $valor = Request::input('valor');
-        $quantidade = Request::input('quantidade');
-
-        DB::insert('insert into produtos values (null, ?, ?, ?, ?)',
-            array($nome, $valor, $descricao, $quantidade));
-
-        #return view('produto.adiciona')->with('nome', $nome);
+        Produto::create(Request::all());
         return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
     }
 
     public function listaJson(){
-        $produtos = DB::select('select * from produtos');
+        $produtos = Produto::all();
         return response()->json($produtos);
     }
 
+    public function remove($id){
+        $produto = Produto::find($id);
+        $produto->delete();
+        return redirect()->action('ProdutoController@lista');
+
+    }
 }
